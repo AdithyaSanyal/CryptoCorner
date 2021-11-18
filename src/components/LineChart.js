@@ -27,10 +27,20 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
 
   const options = {
     scales: {
+      xAxes: [
+        {
+          gridLines: {
+            drawOnChartArea: false,
+          },
+        },
+      ],
       yAxes: [
         {
           ticks: {
             beginAtZero: true,
+          },
+          gridLines: {
+            display: false,
           },
         },
       ],
