@@ -48,7 +48,7 @@ const News = ({ simplified }) => {
                   {news.title}
                 </Typography.Title>
                 <img
-                  src={news?.urlToImage || demoImage}
+                  src={news?.image || demoImage}
                   alt=""
                   width="150"
                   height="100"
