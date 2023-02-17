@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Select, Typography, Row, Col, Avatar, Card } from "antd";
 import moment from "moment";
+import { DatabaseOutlined } from "@ant-design/icons";
 import { useGetCryptoNewsQuery } from "../services/cryptoNews";
 import { useGetCryptosQuery } from "../services/cryptoAPI";
 import Loader from "./Loader";
@@ -61,15 +62,18 @@ const News = ({ simplified }) => {
               </p>
               <div className="provider-container">
                 <div>
-                  <Avatar
+                  {/* <Avatar
                     src={
                       // news.provider[0]?.image?.thumbnail?.contentUrl ||
                       demoImage
                     }
-                  />
-                  <Typography.Text className="provider-name">
-                    {news.source.name}
-                  </Typography.Text>
+                  /> */}
+                  <DatabaseOutlined />
+                  <a href={news.source.url}>
+                    <Typography.Text className="provider-name">
+                      {news.source.name}
+                    </Typography.Text>
+                  </a>
                 </div>
                 <Typography.Text>
                   {"   " + moment(news.publishedAt).startOf("ss").fromNow()}
