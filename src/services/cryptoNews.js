@@ -1,11 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { NEWS_API_KEY, NEWS_URL, API_KEY } from "../constants";
+import { NEWS_API_KEY, NEWS_URL } from "../constants";
 
 const cryptoNewsHeaders = {
   // "x-bingapis-sdk": "true",
   // "x-rapidapi-host": NEWS_HOST.toString(),
   // "x-rapidapi-key": API_KEY.toString(),
 };
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, "0");
+var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+var yyyy = today.getFullYear();
+
+today = yyyy + "-" + mm + "-" + dd;
+console.log(today);
 
 const createRequest = (url) => ({ url, headers: cryptoNewsHeaders });
 
@@ -16,7 +23,7 @@ export const cryptoNews = createApi({
     getCryptoNews: builder.query({
       query: ({ newsCategory, count }) =>
         createRequest(
-          `/everything?q=${newsCategory}&from=2023-02-17&sortBy=popularity&apiKey=${NEWS_API_KEY}&count=${count}`
+          `/everything?q=${newsCategory}&from=${today}&sortBy=popularity&apiKey=${NEWS_API_KEY}&count=${count}`
         ),
     }),
   }),
