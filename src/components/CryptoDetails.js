@@ -38,7 +38,7 @@ const CryptoDetails = () => {
 
   const price = parseFloat(cryptoDetails?.price);
   const rank = cryptoDetails?.rank;
-  const hVol = parseInt(cryptoDetails?.volume);
+  const hVol = parseInt(cryptoDetails['24hVolume']);
   const marketCap = parseInt(cryptoDetails?.marketCap);
   const allTimeHigh = parseFloat(cryptoDetails?.allTimeHigh?.price);
   const stats = [
@@ -67,9 +67,9 @@ const CryptoDetails = () => {
 
   const noOfMarkets = parseInt(cryptoDetails?.numberOfMarkets);
   const noOfExchanges = parseInt(cryptoDetails?.numberOfExchanges);
-  const approvedSupply = parseFloat(cryptoDetails?.approvedSupply);
-  const totalSupply = parseInt(cryptoDetails?.totalSupply);
-  const cirSupply = parseInt(cryptoDetails?.circulatingSupply);
+  const approvedSupply = parseFloat(cryptoDetails?.supply?.confirmed);
+  const totalSupply = parseInt(cryptoDetails?.supply?.total);
+  const cirSupply = parseInt(cryptoDetails?.supply?.circulating);
   const genericStats = [
     {
       title: "Number Of Markets",
@@ -146,7 +146,7 @@ const CryptoDetails = () => {
       <Col className="coin-detail-container">
         <Col className="coin-heading-container">
           <Typography.Title level={2} className="coin-name">
-            {cryptoDetails?.name} ({cryptoDetails?.slug})
+            {cryptoDetails?.name} ({cryptoDetails?.symbol})
           </Typography.Title>
           <p>
             {cryptoDetails?.name} live price in US dollars View value

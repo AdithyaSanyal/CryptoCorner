@@ -13,6 +13,7 @@ const HomePage = () => {
 
   if (isFetching) return <Loader />;
   return (
+    console.log(data),
     <>
       <Typography.Title level={2} className="heading">
         Global Crypto Stats

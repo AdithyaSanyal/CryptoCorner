@@ -15,7 +15,8 @@ const News = ({ simplified }) => {
     newsCategory: newsCategory,
     count: simplified ? 6 : 24,
   });
-  if (!cryptoNews?.value) return <Loader />;
+
+  if (!cryptoNews?.articles) return <Loader />;
 
   return (
     <Row gutter={[24, 24]}>
@@ -38,16 +39,16 @@ const News = ({ simplified }) => {
           </Select>
         </Col>
       )}
-      {cryptoNews.value.map((news, index) => (
+      {cryptoNews.articles.map((news, index) => (
         <Col xs={24} sm={12} lg={8} key={index}>
           <Card hoverable className="news-card">
             <a href={news.url} target="_blank" rel="noreferrer">
               <div className="news-image-container">
                 <Typography.Title level={4} className="news-title">
-                  {news.name}
+                  {news.title}
                 </Typography.Title>
                 <img
-                  src={news?.image?.thumbnail?.contentUrl || demoImage}
+                  src={news?.urlToImage || demoImage}
                   alt=""
                   width="150"
                   height="100"
@@ -62,16 +63,16 @@ const News = ({ simplified }) => {
                 <div>
                   <Avatar
                     src={
-                      news.provider[0]?.image?.thumbnail?.contentUrl ||
+                      // news.provider[0]?.image?.thumbnail?.contentUrl ||
                       demoImage
                     }
                   />
                   <Typography.Text className="provider-name">
-                    {news.provider[0]?.name}
+                    {news.source.name}
                   </Typography.Text>
                 </div>
                 <Typography.Text>
-                  {"   " + moment(news.datePublished).startOf("ss").fromNow()}
+                  {"   " + moment(news.publishedAt).startOf("ss").fromNow()}
                 </Typography.Text>
               </div>
             </a>
